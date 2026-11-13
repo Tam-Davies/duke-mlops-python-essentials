@@ -1,0 +1,124 @@
+
+DUKE UNIVERSITY – MLOps
+AZURE CLI INSTALLATION AND AUTHENTICATION
+
+========================================
+1. CHECK AZURE CLI INSTALLATION
+========================================
+
+winget list --id Microsoft.AzureCLI
+
+2. INSTALL AZURE CLI (IF NOT INSTALLED)
+========================================
+
+winget install --exact --id Microsoft.AzureCLI
+
+3. VERIFY AZURE CLI VERSION
+========================================
+
+az version
+
+4. CHECK AZURE CLI COMMAND LOCATION
+========================================
+
+Get-Command az
+
+5. TROUBLESHOOT AZURE CLI PATH
+========================================
+
+Test-Path "C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin\az.cmd"
+
+If True, test directly:
+
+& "C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin\az.cmd" version
+
+Add Azure CLI to current PowerShell session:
+
+$env:Path += ";C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin"
+
+Verify again:
+
+az version
+
+6. SIGN IN TO AZURE
+========================================
+
+az login
+
+Alternative device-code authentication:
+
+az login --use-device-code
+
+7. VERIFY AZURE ACCOUNT
+========================================
+
+az account show --output table
+
+8. LIST AVAILABLE SUBSCRIPTIONS
+========================================
+
+az account list --output table
+
+9. SELECT A SUBSCRIPTION
+========================================
+
+az account set --subscription "<SUBSCRIPTION_ID_OR_NAME>"
+
+10. VERIFY SELECTED SUBSCRIPTION
+========================================
+
+az account show --output table
+
+11. CHECK INSTALLED AZURE EXTENSIONS
+========================================
+
+az extension list --output table
+
+12. INSTALL AZURE MACHINE LEARNING EXTENSION
+========================================
+
+az extension add --name ml --yes
+
+13. VERIFY AZURE ML EXTENSION
+========================================
+
+az ml --help
+
+14. TROUBLESHOOT AZURE ML EXTENSION
+========================================
+
+Remove existing extension:
+
+az extension remove --name ml
+
+Reinstall:
+
+az extension add --name ml --yes
+
+If prompted to configure preview extension installation:
+
+az config set extension.dynamic_install_allow_preview=true
+
+Test again:
+
+az ml --help
+
+15. SIGN OUT OF AZURE
+========================================
+
+az logout
+
+
+========================================
+ENVIRONMENT INFORMATION
+========================================
+
+Operating System: Windows
+Terminal: PowerShell
+Azure CLI Version: 2.92.0
+Azure CLI Package: Microsoft.AzureCLI
+Azure ML Extension: 2.45.2 (previously installed; import error encountered)
+
+NOTE:
+Azure CLI installed on Windows is separate from Azure CLI installed in WSL Ubuntu.
+Do not save passwords, access tokens, or authentication secrets in this file.
